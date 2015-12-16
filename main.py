@@ -12,12 +12,17 @@ def crypt_char(char, key) -> str:
     else:
         return " "
 
-def decrypt_char(char, key) -> str:
+def crypt_vigenere(text, key) -> str:
 
-     if char!=" " and key!=" ":
-        pos = string.ascii_lowercase.index(char)-string.ascii_lowercase.index(key)
-        pos += 1
-        print(string.ascii_lowercase[pos])
-        return string.ascii_lowercase[pos]
-     else:
-        return " "
+    i = 0
+    crypt = ""
+    for a in text:
+
+        if i > len(key)-1:i = 0
+
+        #print(a,':',key[i])
+        crChar = crypt_char(a, key[i])
+        crypt += crChar
+        if crChar==" ":i -= 1
+        i += 1
+    return crypt
